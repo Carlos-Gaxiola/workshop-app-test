@@ -1,25 +1,68 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
 
+const longestSerieComputed = (series) => {
+  console.log('Computing the word...')
+  let longest = '';
+
+  series.forEach(serie => {
+    if (serie.length > longest.length) {
+      longest = serie;
+    }
+  });
+
+  return longest;
+}
+
 function App() {
+  const [tvSeries, setTvSeries] = useState(["Breaking bad", "Dr. House", "The walking dead"]);
+  const [input, setInput] = useState("");
+  const [counter, setCounter] = useState(0);
+  const [longestSerie, setLongestSerie] = useState("");
+
+  const longestSerieMemo = useMemo(() => longestSerieComputed(tvSeries), [
+    tvSeries
+  ])
+
+  useEffect(() => {
+    setLongestSerie(longestSerieMemo);
+  }, [tvSeries, counter, longestSerieMemo])
+
+  const handleOnChange = (e) => {
+    setInput(e.target.value);
+  }
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    setTvSeries([...tvSeries, input]);
+    setInput("");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>The longest serie name is: {longestSerie}</h2>
+      {
+        tvSeries.map((serie, index) => (
+          <div key={index} className="seriesList">
+            <h3 key={index}>{serie}</h3>
+          </div>
+        ))}
+      <div className="form">
+        <form onSubmit={handleOnSubmit}>
+          <label>
+            Serie:
+            <input type="text" name="serie" value={input} onChange={handleOnChange} />
+          </label>
+          <input type="submit" value="Add tv serie" className="button" />
+        </form>
+      </div>
+      <div className="counter">
+        <h3>{counter}</h3>
+        <button className="button" onClick={() => setCounter(counter + 1)}>Increment counter</button>
+      </div>
     </div>
   );
 }
 
 export default App;
+
