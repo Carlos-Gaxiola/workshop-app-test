@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import List from './components/List';
 
 const longestSerieComputed = (series) => {
-  
+  // Implementation goes here
 }
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const [longestSerie, setLongestSerie] = useState("");
 
   const multiplyNumbers = () => {
-    
+    // Implementation goes here
   }
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function App() {
         <form onSubmit={handleOnSubmit}>
           <label>
             Serie:
-            <input type="text" name="serie" value={input} onChange={handleOnChange} />
+            <input id="inputSerie" type="text" name="serie" value={input} onChange={handleOnChange} />
           </label>
           <input type="submit" value="Add tv serie" className="button" />
         </form>
@@ -56,4 +56,3 @@ function App() {
 }
 
 export default App;
-
