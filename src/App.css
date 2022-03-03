@@ -64,7 +64,7 @@ body{
   padding-top: 20px;
 }
 
-.form{
+.form {
   margin:10px auto;
 	padding: 20px 12px 10px 20px;
   margin-left: 15%;
@@ -83,6 +83,10 @@ body{
 	display:block;
 }
 
-.counter{
+.counter {
   text-align: center;
+}
+
+#inputSerie {
+  padding: 10px;
 }
