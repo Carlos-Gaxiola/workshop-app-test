@@ -3,16 +3,7 @@ import './App.css';
 import List from './components/List';
 
 const longestSerieComputed = (series) => {
-  console.log('Computing the word...')
-  let longest = '';
-
-  series.forEach(serie => {
-    if (serie.length > longest.length) {
-      longest = serie;
-    }
-  });
-
-  return longest;
+  
 }
 
 function App() {
@@ -21,17 +12,13 @@ function App() {
   const [counter, setCounter] = useState(5);
   const [longestSerie, setLongestSerie] = useState("");
 
-  const multiplyNumbers = useCallback(() => {
-    return [counter, counter ** 2, counter ** 3];
-  },[counter])
-
-  const longestSerieMemo = useMemo(() => longestSerieComputed(tvSeries), [
-    tvSeries
-  ])
+  const multiplyNumbers = () => {
+    
+  }
 
   useEffect(() => {
-    setLongestSerie(longestSerieMemo);
-  }, [tvSeries, counter, longestSerieMemo])
+    setLongestSerie(longestSerieComputed(tvSeries));
+  }, [tvSeries, counter])
 
   const handleOnChange = (e) => {
     setInput(e.target.value);
@@ -39,8 +26,6 @@ function App() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    setTvSeries([...tvSeries, input]);
-    setInput("");
   }
 
   return (
@@ -63,7 +48,7 @@ function App() {
       </div>
       <div className="counter">
         <h3>{counter}</h3>
-        <button className="button" onClick={() => setCounter(counter + 1)}>Increment counter</button>
+        <button className="button" >Increment counter</button>
         <List multiplyNumbers={multiplyNumbers}></List>
       </div>
     </div>
